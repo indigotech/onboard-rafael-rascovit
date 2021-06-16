@@ -10,7 +10,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/warnings',
     'plugin:prettier/recommended',
-    'pretier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -79,12 +78,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/class-name-casing': [
-      'error',
-      {
-        allowUnderscorePrefix: true,
-      },
-    ],
+    '@typescript-eslint/class-name-casing': 'off',
     'no-useless-escape': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'no-prototype-builtins': 'off',
@@ -95,12 +89,7 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 'error',
     '@typescript-eslint/type-annotation-spacing': 'off',
     'no-unexpected-multiline': 'off',
-    '@typescript-eslint/interface-name-prefix': [
-      'error',
-      {
-        prefixWithI: 'never',
-      },
-    ],
+    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/member-ordering': 'error',
     '@typescript-eslint/no-empty-function': 'error',
     '@typescript-eslint/no-empty-interface': 'error',

@@ -1,14 +1,6 @@
 import React from 'react';
-import './App.css';
+import { LoginScreen } from './pages/login-screen';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Hello world
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export const App: React.FC = () => {
+  return <LoginScreen />;
+};
