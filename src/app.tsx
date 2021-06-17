@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { Client } from 'apollo-client/client';
 import { LoginScreen } from 'pages/login-screen';
-import { NewPage } from 'pages/new-page';
+import { UsersList } from 'pages/users-list';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export const App: React.FC = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={LoginScreen} />
-          <Route exact path='/new' component={NewPage} />
+          <Route exact path='/new' component={UsersList} />
         </Switch>
       </BrowserRouter>
     </ApolloProvider>
