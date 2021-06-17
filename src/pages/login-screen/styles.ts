@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-export const Content = styled.div`
+export const Wrapper = styled.div`
   .errorMessage {
     margin: 0px;
     color: red;
