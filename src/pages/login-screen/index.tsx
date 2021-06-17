@@ -3,11 +3,13 @@ import { Button } from 'components/button';
 import { Input } from 'components/input';
 import { Wrapper } from 'pages/login-screen/styles';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 const emailRegex =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/;
 
 export const LoginScreen: React.FC = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailMessage, setEmailMessage] = useState(false);
@@ -32,6 +34,7 @@ export const LoginScreen: React.FC = () => {
   const [userLogin, { data, loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted(response) {
       sessionStorage.setItem('token', response.login.token);
+      history.push('/new');
     },
   });
 
