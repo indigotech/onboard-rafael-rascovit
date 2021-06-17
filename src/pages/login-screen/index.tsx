@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import { Button } from 'components/button';
 import { Input } from 'components/input';
+import { LoadIndicator } from 'components/loading';
 import { Wrapper } from 'pages/login-screen/styles';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -93,7 +94,7 @@ export const LoginScreen: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {loading && <p>loading...</p>}
+        {loading && <LoadIndicator type='ThreeDots' height={50} width={50} color='black' />}
         {!loading && <Button type='submit'>Entrar</Button>}
         {data && <p>{data.login.user.name}</p>}
         {loginMessage && <p className='errorMessage'>{errorMessage}</p>}
