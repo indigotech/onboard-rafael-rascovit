@@ -11,7 +11,7 @@ export const App: React.FC = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={LoginScreen} />
-          <Route exact path='/new' component={UsersList} />
+          <Route exact path='/users-list' component={UsersList} />
         </Switch>
       </BrowserRouter>
     </ApolloProvider>
