@@ -1,6 +1,6 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder: string;
   type: string;

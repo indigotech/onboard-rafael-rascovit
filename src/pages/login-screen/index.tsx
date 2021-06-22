@@ -1,4 +1,5 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { Login, LoginMutation } from 'apollo-client/service';
 import { Button } from 'components/button';
 import { Input } from 'components/input';
 import { LoadIndicator } from 'components/loading';
@@ -16,26 +17,11 @@ export const LoginScreen: React.FC = () => {
   const [emailMessage, setEmailMessage] = useState(false);
   const [passwordMessage, setPassMessage] = useState(false);
   const [loginMessage, setLogMessage] = useState(false);
-  const LOGIN_MUTATION = gql`
-    mutation Login($email: String!, $password: String!) {
-      login(data: { email: $email, password: $password }) {
-        token
-        user {
-          id
-          name
-          phone
-          birthDate
-          email
-          role
-        }
-      }
-    }
-  `;
   const [errorMessage, setError] = useState('');
-  const [userLogin, { data, loading }] = useMutation(LOGIN_MUTATION, {
+  const [userLogin, { data, loading }] = useMutation<Login>(LoginMutation, {
     onCompleted(response) {
       sessionStorage.setItem('token', response.login.token);
-      history.push('/new');
+      history.push('/users-list');
     },
   });
 
@@ -63,14 +49,16 @@ export const LoginScreen: React.FC = () => {
     }
   };
 
+  const handleUserLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (inputValidate()) {
+      callLogin();
+    }
+  };
+
   return (
     <Wrapper>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          inputValidate() ? callLogin() : null;
-        }}
-      >
+      <form onSubmit={handleUserLogin}>
         <h1>Bem-vindo(a) à Taqtile!</h1>
         <label>E-mail</label>
         {emailMessage && <p className='errorMessage'>E-mail inválido</p>}
@@ -94,7 +82,7 @@ export const LoginScreen: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {loading && <LoadIndicator type='ThreeDots' height={50} width={50} color='black' />}
+        {loading && <LoadIndicator height={50} width={50} color='black' />}
         {!loading && <Button type='submit'>Entrar</Button>}
         {data && <p>{data.login.user.name}</p>}
         {loginMessage && <p className='errorMessage'>{errorMessage}</p>}
