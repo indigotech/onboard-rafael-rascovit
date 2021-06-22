@@ -89,7 +89,7 @@ export const CreateUserMutation = gql`
     $phone: String!
     $birthDate: Date!
     $password: String
-    $role: String!
+    $role: UserRole!
   ) {
     createUser(
       data: { name: $name, email: $email, phone: $phone, birthDate: $birthDate, password: $password, role: $role }

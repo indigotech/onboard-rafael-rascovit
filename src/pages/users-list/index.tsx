@@ -4,6 +4,7 @@ import { Button } from 'components/button';
 import { LoadIndicator } from 'components/loading';
 import { Select } from 'components/select';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Wrapper } from './styles';
 
 const limitOptions = [
@@ -29,13 +30,16 @@ export const UsersList: React.FC = () => {
   const [usersArray, setUsersArray] = useState<User[]>([]);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
+  const [showMoreButton, setShowMoreButton] = useState(false);
   const [getUsers, { data, loading, error }] = useLazyQuery<UsersQueryDataInterface>(UsersQuery, {
+    fetchPolicy: 'network-only',
     variables: { offset, limit },
     onCompleted: () => {
       if (data === undefined) {
         return;
       }
       setUsersArray([...usersArray, ...data.users.nodes]);
+      setShowMoreButton(data.users.pageInfo.hasNextPage);
     },
   });
 
@@ -59,6 +63,11 @@ export const UsersList: React.FC = () => {
   return (
     <Wrapper>
       <div>
+        <Button type='button'>
+          <Link to='/user-add' className='linkClass'>
+            Adicionar usuário
+          </Link>
+        </Button>
         {usersArray.map((user) => (
           <ul className='userList' key={user.id}>
             <li>{user.name}</li>
@@ -69,10 +78,17 @@ export const UsersList: React.FC = () => {
       {loading && <LoadIndicator className='loadIndicator' height={100} width={100} color='black' />}
       {!loading && (
         <div className='loadMore'>
-          <Select value={limit} onChange={handleLimit} label='Usuários na tela: ' options={limitOptions}></Select>
-          <Button onClick={loadMoreUsers} type='button' className='loadMoreButton'>
-            Carregar mais
-          </Button>
+          <Select
+            value={limit}
+            onChange={handleLimit}
+            label='Número de usuários a carregar: '
+            options={limitOptions}
+          ></Select>
+          {showMoreButton && (
+            <Button onClick={loadMoreUsers} type='button' className='loadMoreButton'>
+              Carregar mais
+            </Button>
+          )}
         </div>
       )}
     </Wrapper>
