@@ -5,7 +5,7 @@ import { Form } from 'components/form';
 import { Input } from 'components/input';
 import { LoadIndicator } from 'components/loading';
 import { Select } from 'components/select';
-import { Wrapper } from 'pages/add-user/styles';
+import { WrapperAddUser } from 'pages/add-user/styles';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { birthDateValidate, emailValidate, futureDateValidate, maskPhone, setRequestDate } from 'validations';
@@ -94,7 +94,7 @@ export const AddUserScreen: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <WrapperAddUser>
       <Button type='button' onClick={() => history.push('/users-list')}>
         Voltar
       </Button>
@@ -150,6 +150,6 @@ export const AddUserScreen: React.FC = () => {
         {loading && <LoadIndicator height={100} width={100} />}
         {showCreateErrorMessage && <p className='errorMessage'>{onCreateErrorMessage}</p>}
       </Form>
-    </Wrapper>
+    </WrapperAddUser>
   );
 };

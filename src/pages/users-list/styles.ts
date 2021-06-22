@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const WrapperUserList = styled.div`
   .userList {
     border-style: solid;
   }

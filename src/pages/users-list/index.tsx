@@ -5,7 +5,7 @@ import { LoadIndicator } from 'components/loading';
 import { Select } from 'components/select';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Wrapper } from './styles';
+import { WrapperUserList } from './styles';
 
 const limitOptions = [
   {
@@ -61,7 +61,7 @@ export const UsersList: React.FC = () => {
     return <div>{error.message}</div>;
   }
   return (
-    <Wrapper>
+    <WrapperUserList>
       <div>
         <Button type='button'>
           <Link to='/user-add' className='linkClass'>
@@ -91,6 +91,6 @@ export const UsersList: React.FC = () => {
           )}
         </div>
       )}
-    </Wrapper>
+    </WrapperUserList>
   );
 };

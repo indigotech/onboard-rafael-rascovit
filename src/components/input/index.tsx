@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper } from './styles';
+import { WrapperInput } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -10,11 +10,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: React.FC<InputProps> = ({ label, ...rest }) => {
   return (
-    <Wrapper>
+    <WrapperInput>
       <label className='inputDisplay'>
         {label}
         <input {...rest} />
       </label>
-    </Wrapper>
+    </WrapperInput>
   );
 };

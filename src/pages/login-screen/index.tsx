@@ -4,7 +4,7 @@ import { Button } from 'components/button';
 import { Form } from 'components/form';
 import { Input } from 'components/input';
 import { LoadIndicator } from 'components/loading';
-import { Wrapper } from 'pages/login-screen/styles';
+import { WrapperLoginScreen } from 'pages/login-screen/styles';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { emailValidate, passwordValidate } from 'validations';
@@ -56,7 +56,7 @@ export const LoginScreen: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <WrapperLoginScreen>
       <Form title='Bem-vindo(a) à Taqtile!' onSubmit={handleUserLogin}>
         <Input
           label='E-mail'
@@ -85,6 +85,6 @@ export const LoginScreen: React.FC = () => {
         {data && <p>{data.login.user.name}</p>}
         {loginMessage && <p className='errorMessage'>{errorMessage}</p>}
       </Form>
-    </Wrapper>
+    </WrapperLoginScreen>
   );
 };

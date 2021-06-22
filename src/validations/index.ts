@@ -18,35 +18,19 @@ const isFutureDate = (param: string) => {
 };
 
 export const emailValidate = (param: string): boolean => {
-  if (!emailRegex.test(param)) {
-    return false;
-  } else {
-    return true;
-  }
+  return emailRegex.test(param);
 };
 
 export const passwordValidate = (param: string): boolean => {
-  if (!passRegex.test(param)) {
-    return false;
-  } else {
-    return true;
-  }
+  return passRegex.test(param);
 };
 
 export const birthDateValidate = (param: string): boolean => {
-  if (!dtRegex.test(param)) {
-    return false;
-  } else {
-    return true;
-  }
+  return dtRegex.test(param);
 };
 
 export const futureDateValidate = (param: string): boolean => {
-  if (!isFutureDate(param)) {
-    return false;
-  } else {
-    return true;
-  }
+  return isFutureDate(param);
 };
 
 export const maskPhone = (param: string): string => {
