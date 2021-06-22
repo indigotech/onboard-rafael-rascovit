@@ -1,14 +1,13 @@
 import { useMutation } from '@apollo/client';
 import { Login, LoginMutation } from 'apollo-client/service';
 import { Button } from 'components/button';
+import { Form } from 'components/form';
 import { Input } from 'components/input';
 import { LoadIndicator } from 'components/loading';
-import { Wrapper } from 'pages/login-screen/styles';
+import { WrapperLoginScreen } from 'pages/login-screen/styles';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-const emailRegex =
-  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/;
+import { emailValidate, passwordValidate } from 'validations';
 
 export const LoginScreen: React.FC = () => {
   const history = useHistory();
@@ -27,17 +26,17 @@ export const LoginScreen: React.FC = () => {
 
   const inputValidate = () => {
     setLogMessage(false);
-    if (!emailRegex.test(email)) {
+    if (!emailValidate(email)) {
       setEmailMessage(true);
     } else {
       setEmailMessage(false);
     }
-    if (!passRegex.test(password)) {
+    if (!passwordValidate(password)) {
       setPassMessage(true);
     } else {
       setPassMessage(false);
     }
-    return emailRegex.test(email) && passRegex.test(password);
+    return emailValidate(email) && passwordValidate(password);
   };
 
   const callLogin = async () => {
@@ -57,12 +56,10 @@ export const LoginScreen: React.FC = () => {
   };
 
   return (
-    <Wrapper>
-      <form onSubmit={handleUserLogin}>
-        <h1>Bem-vindo(a) à Taqtile!</h1>
-        <label>E-mail</label>
-        {emailMessage && <p className='errorMessage'>E-mail inválido</p>}
+    <WrapperLoginScreen>
+      <Form title='Bem-vindo(a) à Taqtile!' onSubmit={handleUserLogin}>
         <Input
+          label='E-mail'
           name='email'
           placeholder='Digite seu e-mail aqui'
           type='text'
@@ -70,11 +67,9 @@ export const LoginScreen: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label>Senha</label>
-        {passwordMessage && (
-          <p className='errorMessage'>A senha precisa conter 7 dígitos com pelo menos uma letra e um número</p>
-        )}
+        {emailMessage && <p className='errorMessage'>E-mail inválido</p>}
         <Input
+          label='Senha'
           name='password'
           placeholder='******'
           type='password'
@@ -82,11 +77,14 @@ export const LoginScreen: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {passwordMessage && (
+          <p className='errorMessage'>A senha precisa conter 7 dígitos com pelo menos uma letra e um número</p>
+        )}
         {loading && <LoadIndicator height={50} width={50} color='black' />}
         {!loading && <Button type='submit'>Entrar</Button>}
         {data && <p>{data.login.user.name}</p>}
         {loginMessage && <p className='errorMessage'>{errorMessage}</p>}
-      </form>
-    </Wrapper>
+      </Form>
+    </WrapperLoginScreen>
   );
 };

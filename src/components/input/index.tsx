@@ -1,15 +1,20 @@
 import React from 'react';
+import { WrapperInput } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder: string;
   type: string;
+  label: string;
 }
 
-export const Input: React.FC<InputProps> = ({ ...rest }) => {
+export const Input: React.FC<InputProps> = ({ label, ...rest }) => {
   return (
-    <div>
-      <input {...rest} />
-    </div>
+    <WrapperInput>
+      <label className='inputDisplay'>
+        {label}
+        <input {...rest} />
+      </label>
+    </WrapperInput>
   );
 };
