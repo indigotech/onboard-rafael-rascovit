@@ -9,6 +9,17 @@ export interface User {
   role: string;
 }
 
+export interface UserDetail {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    birthDate: string;
+    role: string;
+  };
+}
+
 export interface PageInfo {
   offset: number;
   limit: number;
@@ -54,7 +65,7 @@ export const UsersQuery = gql`
 `;
 
 export const UserQuery = gql`
-  query User($id: Int!) {
+  query User($id: ID!) {
     user(id: $id) {
       id
       name

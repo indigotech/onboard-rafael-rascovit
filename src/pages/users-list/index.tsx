@@ -4,7 +4,7 @@ import { Button } from 'components/button';
 import { LoadIndicator } from 'components/loading';
 import { Select } from 'components/select';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { WrapperUserList } from './styles';
 
 const limitOptions = [
@@ -27,6 +27,7 @@ const limitOptions = [
 ];
 
 export const UsersList: React.FC = () => {
+  const history = useHistory();
   const [usersArray, setUsersArray] = useState<User[]>([]);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -68,12 +69,16 @@ export const UsersList: React.FC = () => {
             Adicionar usuário
           </Link>
         </Button>
-        {usersArray.map((user) => (
-          <ul className='userList' key={user.id}>
-            <li>{user.name}</li>
-            <li>{user.email}</li>
-          </ul>
-        ))}
+        <div className='usersList'>
+          {usersArray.map((user) => (
+            <div className='cardList' key={user.id} onClick={() => history.push(`/user-details/${user.id}`)}>
+              <p className='cardTitle'>{user.name}</p>
+              <ul className='userList'>
+                <li>{user.email}</li>
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
       {loading && <LoadIndicator className='loadIndicator' height={100} width={100} color='black' />}
       {!loading && (
