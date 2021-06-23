@@ -25,7 +25,7 @@ const rolesOptions = [
   },
 ];
 
-export const AddUserScreen: React.FC = () => {
+export const AddUser: React.FC = () => {
   const history = useHistory();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -95,7 +95,7 @@ export const AddUserScreen: React.FC = () => {
 
   return (
     <WrapperAddUser>
-      <Button type='button' onClick={() => history.push('/users-list')}>
+      <Button type='button' onClick={() => history.goBack()}>
         Voltar
       </Button>
       <Form title='Adicionar usuário' onSubmit={handleCreateUser}>
