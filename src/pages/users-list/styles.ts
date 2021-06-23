@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const WrapperUserList = styled.div`
+  margin: 16px 0;
+
   .loadMore {
     display: flex;
     flex-direction: column;
@@ -20,6 +22,8 @@ export const WrapperUserList = styled.div`
   }
 
   .linkClass {
+    padding: 8px 16px;
+    border: 1px solid black;
     text-decoration: none;
     color: black;
   }

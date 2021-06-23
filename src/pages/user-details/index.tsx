@@ -1,22 +1,20 @@
 import { useQuery } from '@apollo/client';
 import { UserDetail, UserQuery } from 'apollo-client/service';
-import { Button } from 'components/button';
+import { LinkComponent } from 'components/Link';
 import { LoadIndicator } from 'components/loading';
 import { WrapperUserDetails } from 'pages/user-details/styles';
 import React from 'react';
 import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
 
 export const UserDetails: React.FC = () => {
-  const history = useHistory();
   const id = useParams();
   const { data, loading, error } = useQuery<UserDetail>(UserQuery, { variables: id });
 
   return (
     <WrapperUserDetails>
-      <Button type='button' onClick={() => history.goBack()}>
-        Voltar
-      </Button>
+      <div>
+        <LinkComponent to='/users-list'>Voltar</LinkComponent>
+      </div>
       {loading ? (
         <LoadIndicator className='loadIndicator' height={100} width={100} color='black' />
       ) : error ? (

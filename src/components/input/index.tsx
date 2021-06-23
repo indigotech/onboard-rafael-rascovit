@@ -1,5 +1,6 @@
+import { Label } from 'components/label';
 import React from 'react';
-import { WrapperInput } from './styles';
+import styled from 'styled-components';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -11,10 +12,19 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input: React.FC<InputProps> = ({ label, ...rest }) => {
   return (
     <WrapperInput>
-      <label className='inputDisplay'>
+      <Label>
         {label}
-        <input {...rest} />
-      </label>
+        <InputStyled {...rest} />
+      </Label>
     </WrapperInput>
   );
 };
+
+const InputStyled = styled.input`
+  border: 1px solid #777;
+`;
+
+const WrapperInput = styled.div`
+  display: table-caption;
+  margin-bottom: 12px;
+`;

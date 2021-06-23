@@ -1,4 +1,6 @@
+import { Label } from 'components/label';
 import React from 'react';
+import styled from 'styled-components';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options: any[];
@@ -22,10 +24,15 @@ const renderOptions = (options: any[]) => {
 export const Select: React.FC<SelectProps> = ({ options, label, ...rest }) => {
   return (
     <div>
-      <label>
+      <Label>
         {label}
-        <select {...rest}>{renderOptions(options)}</select>
-      </label>
+        <SelectStyled {...rest}>{renderOptions(options)}</SelectStyled>
+      </Label>
     </div>
   );
 };
+
+const SelectStyled = styled.select`
+  border: 1px solid #777;
+  background-color: white;
+`;
