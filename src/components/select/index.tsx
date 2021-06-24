@@ -24,10 +24,8 @@ const renderOptions = (options: any[]) => {
 export const Select: React.FC<SelectProps> = ({ options, label, ...rest }) => {
   return (
     <div>
-      <Label>
-        {label}
-        <SelectStyled {...rest}>{renderOptions(options)}</SelectStyled>
-      </Label>
+      <Label>{label}</Label>
+      <SelectStyled {...rest}>{renderOptions(options)}</SelectStyled>
     </div>
   );
 };

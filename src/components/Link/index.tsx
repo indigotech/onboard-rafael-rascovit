@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const LinkComponent: React.FC<any> = ({ ...rest }) => {
+interface LinkProps extends React.RefAttributes<HTMLAnchorElement> {
+  to: string;
+}
+
+export const LinkComponent: React.FC<LinkProps> = ({ ...rest }) => {
   return <LinkStyled {...rest} />;
 };
 
