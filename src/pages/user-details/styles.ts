@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const WrapperUserDetails = styled.div`
+  margin: 16px 0;
+
   .errorMessage {
     margin: 0px;
     color: red;
@@ -29,5 +31,12 @@ export const WrapperUserDetails = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .linkClass {
+    padding: 8px 16px;
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
   }
 `;

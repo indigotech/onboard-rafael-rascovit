@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { CreateUserMutation } from 'apollo-client/service';
+import { LinkComponent } from 'components/Link';
 import { Button } from 'components/button';
 import { Form } from 'components/form';
 import { Input } from 'components/input';
@@ -95,9 +96,9 @@ export const AddUser: React.FC = () => {
 
   return (
     <WrapperAddUser>
-      <Button type='button' onClick={() => history.goBack()}>
-        Voltar
-      </Button>
+      <div>
+        <LinkComponent to='/users-list'>Voltar</LinkComponent>
+      </div>
       <Form title='Adicionar usuário' onSubmit={handleCreateUser}>
         <Input
           name='name'

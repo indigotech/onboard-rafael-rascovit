@@ -1,10 +1,11 @@
 import { useLazyQuery } from '@apollo/client';
 import { UsersQuery, UsersQueryDataInterface, User } from 'apollo-client/service';
+import { LinkComponent } from 'components/Link';
 import { Button } from 'components/button';
 import { LoadIndicator } from 'components/loading';
 import { Select } from 'components/select';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { WrapperUserList } from './styles';
 
 const limitOptions = [
@@ -64,11 +65,9 @@ export const UsersList: React.FC = () => {
   return (
     <WrapperUserList>
       <div>
-        <Button type='button'>
-          <Link to='/user-add' className='linkClass'>
-            Adicionar usuário
-          </Link>
-        </Button>
+        <div>
+          <LinkComponent to='/user-add'>Adicionar usuário</LinkComponent>
+        </div>
         <div className='usersList'>
           {usersArray.map((user) => (
             <div className='cardList' key={user.id} onClick={() => history.push(`/user-details/${user.id}`)}>
